@@ -85,3 +85,68 @@ func main(){
 }
 ```
 
+#### Map
+A map is a built-in data structure that stores key-value pairs.
+
+Characteristics:
+
+`Keys` must be of type that supports equality (eg strings, integers, structs with comparable fields). Slices, maps, and functions cannot be keys
+
+`values` can be of any type
+
+`Dynamic` Maps grow dynamically as you add key-value pairs
+
+`Reference Type` Maps are reference types, meaning they are `nil` until initialized (eg using `make()` or a map literal)
+
+Friendly example
+
+Think of a map like a phonebook whic haas the name as the key and phone number as value. You can add, update or remove entries as needed.
+
+Actual implementation
+
+```Go
+package main
+import "fmt"
+
+func main(){
+	//Create map using make
+	phoneBook := make(map[string] string)
+	fmt.Println("Initial Map:", phoneBook) //Output map[]
+
+	//Adding key value pairs
+	phoneBook["Alice"] = "123-456-789"
+	phoneBook["Bob"] = "987-654-321"
+	fmt.Println("After adding entries:", phoneBook) //map[Alice:123-456-789 Bob:987-654-321]
+
+	//Accessing a value by key
+	aliceNumber := phoneBook["Alice"]
+	fmt.Println("Alice number:", aliceNumber) //123-456-789
+
+	//Checking if a key exists
+	number, exists :=phoneBook["Charlie"]
+	if exists {
+		fmt.Println("Charlie's number", number)
+	} else{
+		fmt.Println("Charlie is not found in phonebook") //Charlie is not found in phonebook"
+	}
+
+	//Updating a value
+	phoneBook["Alice"] = "555-555-555"
+	fmt.Println("After updating Alice:", phoneBook) //Output map[Alice:555-555-555 Bob:987-654-321]
+
+	//Deleting a key-value pair
+	delete(phoneBook, "Bob")
+	fmt.Println("After deleting Bob:", phoneBook)//map[Alice:555-555-555]
+
+	//Length of the map
+	fmt.Println("Length:", len(phoneBook)) // 1 (Only one entry)
+
+	//Creating a map using a map literal
+	scores := map[string]int{
+		"Alice": 95,
+		"Bob": 87,
+	}
+	fmt.Println("Scores map:", scores) //[Alice:95 Bob:87]
+
+}
+```
