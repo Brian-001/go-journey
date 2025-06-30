@@ -1,45 +1,61 @@
 package main
 import "fmt"
+type Student struct{
+	Name string
+	Age int
+	Grade string
+}
 
-func main(){
-	//Create map using make
-	phoneBook := make(map[string] string)
-	fmt.Println("Initial Map:", phoneBook) //Output map[]
 
-	//Adding key value pairs
-	phoneBook["Alice"] = "123-456-789"
-	phoneBook["Bob"] = "987-654-321"
-	fmt.Println("After adding entries:", phoneBook) //map[Alice:123-456-789 Bob:987-654-321]
+func main() {
 
-	//Accessing a value by key
-	aliceNumber := phoneBook["Alice"]
-	fmt.Println("Alice number:", aliceNumber) //123-456-789
-
-	//Checking if a key exists
-	number, exists :=phoneBook["Charlie"]
-	if exists {
-		fmt.Println("Charlie's number", number)
-	} else{
-		fmt.Println("Charlie is not found in phonebook") //Charlie is not found in phonebook"
+	//Create a struc instance
+	alice := Student{
+		Name: "Alice",
+		Age: 20,
+		Grade: "A",
 	}
 
-	//Updating a value
-	phoneBook["Alice"] = "555-555-555"
-	fmt.Println("After updating Alice:", phoneBook) //Output map[Alice:555-555-555 Bob:987-654-321]
+	fmt.Println("Student", alice) // Student {Alice 20 A}
 
-	//Deleting a key-value pair
-	delete(phoneBook, "Bob")
-	fmt.Println("After deleting Bob:", phoneBook)//map[Alice:555-555-555]
+	//Accessing and modifying fields
+	fmt.Println("Name", alice.Name)
+	fmt.Println("Age", alice.Age)
+	alice.Grade = "B+"
+	fmt.Println("Grade", alice.Grade)
 
-	//Length of the map
-	fmt.Println("Length:", len(phoneBook)) // 1 (Only one entry)
+	//Creating a struct with zero values
+	var bob Student
+	fmt.Println("Bob (zero values):", bob) //Bob (zero values): { 0 }
 
-	//Creating a map using a map literal
-	scores := map[string]int{
-		"Alice": 95,
-		"Bob": 87,
+
+	//Using a pointer to a struct
+	dave := &Student{
+		Name: "Dave",
+		Age: 20,
+		Grade: "B",
 	}
-	fmt.Println("Scores map:", scores) //[Alice:95 Bob:87]
 
+	fmt.Println("Dave (pointer)", *dave) //Dave (pointer) {Dave 20 B}
+	dave.Age = 22
+	fmt.Println("Dave age after update", *dave) //Dave age after update {Dave 22 B}
 
+	charlie :=&Student{
+		Name: "Charlie",
+		Age: 21,
+		Grade: "B",
+	}
+	fmt.Println("Charlie:", charlie)
+
+	//Struct with a slice field
+	type Classroom struct{
+		Name string
+		Students []Student
+	}
+
+	class := Classroom{
+		Name: "CS101",
+		Students: []Student{alice, *charlie},
+	}
+	fmt.Println("Classroom:", class)
 }

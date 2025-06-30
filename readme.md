@@ -150,3 +150,33 @@ func main(){
 
 }
 ```
+
+#### Struct
+A struct is a user-defined data type that groups together a collection of fields, each with its own type and name.
+
+Structs are useful for organizing complex data, like representing a real-world entity (eg, a person, a car, or book) with multiple attributes.
+
+Characteristics
+
+`Fields`: Each field in a struct has a name and a type eg, `Name String`, `Age int`.
+
+`Custom Type`: You define a struct using the `type` keyword, and it can be used to create instances(variables) of that type.
+
+`Value Type` Structs are value types, meaning they are copied when assigned or passed to functions(unless pointers are used)
+
+`Flexible`Structs can contain fields different types, including other structs, slices, maps,etc
+
+Friendly example:
+
+Imagine you're organizing information about a student. A student has a name, age and a grade. Instead of using seperate variables for each peace of information, you can create a struct called `Student` to group these records together to a single record in databse.
+
+For example:
+
+A `Student` struct might have:
+<ul>
+	<li>Name: "Alice" (string)</li>
+	<li>Age: 20 (int)</li>
+	<li>Grade: "A" (string)</li>
+</ul>
+
+Actual implementation
